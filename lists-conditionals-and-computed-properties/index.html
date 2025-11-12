@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lists, Conditionals, and Computed Properties</title>
+    <link rel="icon" href="/favicon.ico" />
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <!--this how you pull in vue through a CDN-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--this is how you pull in tailwind through a CDN-->
+  <body class="h-full grid place-items-center">
+    <div id="app">
+      <!--imagine you are in school and you an app that tracks your assignments-->
+      <!---->
+      <!---->
+      <section>
+        <h1>Assignments</h1>
+
+        <ul>
+          <li>Finish project</li>
+          <li>Read chapter 4</li>
+          <li>Turn in homework</li>
+        </ul>
+      </section>
+
+
+    </div>
+
+    <script>
+
+      Vue.createApp({
+        
+      }).mount("#app"); //this initialize vue and mount it to the DOM
+    </script>
+  </body>
+</html>
