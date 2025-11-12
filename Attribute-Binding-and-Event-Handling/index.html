@@ -32,15 +32,35 @@
   <body>
     <div id="app">
       <!--lets say i want to apply the class dynamically by clicking the text change color-->
-      <button :class="buttonClasses">Click Me</button>
+      <!--i want to change the color of the button to red when i click -->
+      <!--i will the add an attribute called v-on:click to the button  i can either use inline method or use a method in the data-->
+
+
+      <!-- <button :class="buttonClasses" v-on:click="toggle">Click Me</button> -->
+      <button :class="active ? 'text-red' : 'text-green'" @click="toggle">Click Me</button>
+
     </div>
 
     <script>
+
+      // this is one way to structure vue components and is call the options API
+      //this starts from vue 2 to vue 1
+
+
       Vue.createApp({
         data() {
           return {
-            buttonClasses: 'text-green',
+            // buttonClasses: 'text-green',
+            active: false
           };
+        }, 
+        methods: {
+          toggle() {
+
+            // alert('toggled');
+            // this.buttonClasses = 'text-red';
+            this.active = ! this.active;
+          }
         }
        
       }).mount("#app"); //this initialize vue and mount it to the DOM
