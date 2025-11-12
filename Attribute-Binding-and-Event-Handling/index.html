@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attribute-Binding-and-Event-Handling</title>
+    <link rel="icon" href="/favicon.ico" />
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <!--this how you pull in vue through a CDN-->
+
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+      }
+
+      .text-red {
+        color: red;
+      }
+
+      .text-green {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!--lets say i want to apply the class dynamically by clicking the text change color-->
+      <button :class="buttonClasses">Click Me</button>
+    </div>
+
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            buttonClasses: 'text-green',
+          };
+        }
+       
+      }).mount("#app"); //this initialize vue and mount it to the DOM
+    </script>
+  </body>
+</html>
