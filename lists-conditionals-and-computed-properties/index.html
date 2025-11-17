@@ -10,29 +10,93 @@
     <!--this how you pull in vue through a CDN-->
     <script src="https://cdn.tailwindcss.com"></script>
     <!--this is how you pull in tailwind through a CDN-->
+  </head>
+
   <body class="h-full grid place-items-center">
     <div id="app">
       <!--imagine you are in school and you an app that tracks your assignments-->
+      <!-- now there is an array of assignments next is to loop over each -->
       <!---->
-      <!---->
-      <section>
-        <h1>Assignments</h1>
+      <section v-show="inProgressAssignments.length">
+        <h2 class="font-bold mb-2">In progress</h2>
 
         <ul>
-          <li>Finish project</li>
-          <li>Read chapter 4</li>
-          <li>Turn in homework</li>
+          <!--for each assignments as assignment echo out the name-->
+          <!--now is to intruduce comoputed properties-->
+          <li
+            v-for="assignment in inProgressAssignments"
+            :key="assignment.id"
+          >
+            <label>
+              {{ assignment.name }}
+
+              <!--first bind then update the underlying value if it change-->
+
+              <input type="checkbox" v-model="assignment.complete" />
+            </label>
+          </li>
         </ul>
       </section>
 
+      <!--next is to make it dynamic: the uncompleted assignments should not display in completed section-->
+      <!--the question is how may i achieve this?
+      1 can use the filter method
+      2. filter method works but stills show both sides, now make sure that checked its only shows completed ones
+      3.it works but but when checked the in progress also get checked how do i fix that?
+      4.so how to do that is by applying a key to each item, know that whenever you re looping over an array you need to apply a key
+      5. next is only display a section if there are  completed tasks if not don't display anything use either v-show/v-if
+      6. but the issue here is, i have to duplicate the code for both secs this is not good 
+      7. now is the time to introduce computed properties you add that in the script section
+      -->
 
+      <section
+        v-show="completedAssignments.length"
+        class="mt-8"
+      >
+        <h2 class="font-bold mb-2">Completed</h2>
+
+        <ul>
+          <li
+            v-for="assignment in completedAssignments"
+            :key="assignment.id"
+          >
+            <label>
+              {{ assignment.name }}
+
+              <input type="checkbox" v-model="assignment.complete" />
+            </label>
+          </li>
+        </ul>
+      </section>
     </div>
 
     <script>
+      let app = {
+        data() {
+          return {
+            assignments: [
+              { name: "Finish project", complete: false, id: 1 },
+              { name: "Read chapter 4", complete: false, id: 2 },
+              { name: "Turn in homework", complete: false, id: 3 },
+            ],
+          };
+        },
 
-      Vue.createApp({
-        
-      }).mount("#app"); //this initialize vue and mount it to the DOM
+        computed: {
+          //this is a computed property
+          inProgressAssignments () {
+          return this.assignments.filter(assignment => ! assignment.complete);
+          },
+
+          completedAssignments () {
+          return this.assignments.filter(assignment => assignment.complete);
+          }
+
+        }
+      };
+
+      //this initialize vue and mount it to the DOM
+      Vue.createApp(app).mount("#app");
     </script>
   </body>
 </html>
