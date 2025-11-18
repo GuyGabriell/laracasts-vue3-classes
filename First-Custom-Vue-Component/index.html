@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>First Custom Vue Component</title>
+    <link rel="icon" href="/favicon.ico" />
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <!--this how you pull in vue through a CDN-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--this is how you pull in tailwind through a CDN-->
+  </head>
+
+  <body class="h-full grid place-items-center">
+    <div id="app">
+      <app-button>Submit</app-button>
+      
+    </div>
+
+    <script>
+      let app = {
+        components: {
+          "app-button": {
+            template: `
+              <button class="bg-gray-200 hover:bg-gray-400 px-4 py-2 rounded border disabled:cursor-not-allowed" :disabled="processing">
+                <slot />
+              </button>
+            `,
+
+            data () {
+              return {
+                processing: true,
+              }
+            },
+          },
+        }
+      };
+
+      //this initialize vue and mount it to the DOM
+      Vue.createApp(app).mount("#app");
+    </script>
+  </body>
+</html>
