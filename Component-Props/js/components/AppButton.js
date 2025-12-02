@@ -4,7 +4,7 @@ export default {
     
     :class="{
     'px-4 py-2 rounded border disabled:cursor-not-allowed' : true,
-    'bg-green-200 hover:bg-gray-400' : type === 'primary',
+    'bg-green-600 hover:bg-gray-700' : type === 'primary',
     'bg-blue-200 hover:bg-blue-400' : type === 'secondary',
     'bg-red-200 hover:bg-red-400' : type === 'muted',
     'is-loading' : processing,
